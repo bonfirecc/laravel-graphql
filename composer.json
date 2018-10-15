@@ -1,5 +1,5 @@
 {
-    "name": "bonfirecc/graphql-laravel",
+    "name": "bonfirecc/laravel-graphql",
     "description": "Laravel wrapper for PHP GraphQL",
     "keywords": ["framework", "laravel", "graphql", "react"],
     "authors": [
