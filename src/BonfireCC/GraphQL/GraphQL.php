@@ -8,6 +8,8 @@ use GraphQL\Type\Definition\ObjectType;
 use BonfireCC\GraphQL\Events\SchemaAdded;
 use BonfireCC\GraphQL\Exception\SchemaNotFound;
 use BonfireCC\GraphQL\Support\PaginationType;
+use BonfireCC\GraphQL\Support\WhereType;
+use BonfireCC\GraphQL\Support\InputType;
 use Session;
 
 class GraphQL {
@@ -274,9 +276,13 @@ class GraphQL {
         return $type->name;
     }
 
-    public function paginate($typeName, $model = false)
+    public function paginate($typeName)
     {
         $name = $typeName . 'Connection';
+        $types = $this->getTypes();
+        $type = new $types[$typeName];
+        $atributes = $type->getAttributes();
+        $model = $atributes['model'] ?? false;
 
         if(!isset($this->typesInstances[$name]))
         {
@@ -290,13 +296,25 @@ class GraphQL {
     {
         $name = $typeName . 'WhereInput';
         $types = $this->getTypes();
-        $type = $types[$typeName];
-        
+        $type = new $types[$typeName];
+        $fields = $type->getFields();
         if(!isset($this->typesInstances[$name]))
         {
-
+            $this->typesInstances[$name] = new WhereType($typeName, $fields);
         }
-
+        return $this->typesInstances[$name];
+    }
+    public function input($typeName)
+    {
+        $name = $typeName . 'Input';
+        $types = $this->getTypes();
+        $type = new $types[$typeName];
+        $fields = $type->getFields();
+        if(!isset($this->typesInstances[$name]))
+        {
+            $this->typesInstances[$name] = new InputType($typeName, $fields);
+        }
+        return $this->typesInstances[$name];
     }
 
     public static function formatError(Error $e)

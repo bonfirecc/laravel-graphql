@@ -1,7 +1,7 @@
 # Laravel GraphQL
 
-[![Latest Stable Version](https://poser.pugx.org/BonfireCC/graphql-laravel/v/stable)](https://packagist.org/packages/BonfireCC/graphql-laravel)
-[![License](https://poser.pugx.org/BonfireCC/graphql-laravel/license)](https://packagist.org/packages/BonfireCC/graphql-laravel)
+[![Latest Stable Version](https://poser.pugx.org/BonfireCC/laravel-graphql/v/stable)](https://packagist.org/packages/BonfireCC/laravel-graphql)
+[![License](https://poser.pugx.org/BonfireCC/laravel-graphql/license)](https://packagist.org/packages/BonfireCC/laravel-graphql)
 
 Core code is from [Rabing laravel-graphql](https://github.com/rebing/graphql-laravel)
 
@@ -27,7 +27,7 @@ This package is compatible with Eloquent models or any other data source.
 ```json
 {
   "require": {
-    "BonfireCC/graphql-laravel": "~1.15.7"
+    "BonfireCC/graphql-laravel": "~1.1.1"
   }
 }
 ```
