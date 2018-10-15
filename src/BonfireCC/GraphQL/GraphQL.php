@@ -286,6 +286,19 @@ class GraphQL {
         return $this->typesInstances[$name];
     }
 
+    public function where($typeName)
+    {
+        $name = $typeName . 'WhereInput';
+        $types = $this->getTypes();
+        $type = $types[$typeName];
+        
+        if(!isset($this->typesInstances[$name]))
+        {
+
+        }
+
+    }
+
     public static function formatError(Error $e)
     {
         $error = [
