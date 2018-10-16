@@ -1,0 +1,24 @@
+<?php
+
+namespace DummyNamespace;
+
+use App\GraphQL\Type\NameType;
+use BonfireCC\GraphQL\Support\Type as GraphQLType;
+use BonfireCC\GraphQL\Support\WhereType;
+
+class DummyClass extends GraphQLType
+{
+    protected $inputObject = true;
+    protected $attributes = [
+        'name' => 'DummyInput',
+        'description' => 'A type'
+    ];
+
+    public function fields()
+    {
+        $type = new NameType();
+
+        $fields = $type->fields();
+        return WhereType::buildWhere($fields, 'DummyInput');
+    }
+}
