@@ -5,6 +5,7 @@ namespace DummyNamespace;
 use App\GraphQL\Type\NameType;
 use App\GraphQL\Type\Core\Input;
 use BonfireCC\GraphQL\Support\Type as GraphQLType;
+use BonfireCC\GraphQL\Support\WhereType;
 
 class DummyClass extends GraphQLType
 {
@@ -19,6 +20,6 @@ class DummyClass extends GraphQLType
         $type = new NameType();
 
         $fields = $type->fields();
-        return Input::buildDataInput($fields, 'DummyInput');
+        return WhereType::buildWhere($fields, 'DummyInput');
     }
 }

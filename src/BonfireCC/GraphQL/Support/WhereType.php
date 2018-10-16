@@ -16,11 +16,11 @@ class WhereType extends ObjectType
         $name = $typeName . 'WhereInput';
         $config = [
             'name'  => $name,
-            'fields' => $this->buildWhere($fields)
+            'fields' => self::buildWhere($fields),
         ];
         parent::__construct($config);
     }
-    public function buildWhere($fields, $typeName = '')
+    public static function buildWhere($fields, $typeName = '')
     {
         $wheres = [];
         if ($typeName != '') {

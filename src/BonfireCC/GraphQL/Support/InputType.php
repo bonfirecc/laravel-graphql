@@ -19,11 +19,11 @@ class InputType extends InputObjectType
         $config = [
             'name'  => $name,
             'description' => '',
-            'fields' => $this->buildDataInput($fields)
+            'fields' => self::buildDataInput($fields)
         ];
         parent::__construct($config);
     }
-    public function buildDataInput($fields, $typeName = '')
+    public static function buildDataInput($fields, $typeName = '')
     {
         $data = [];
         foreach ($fields as $fieldName => $field) {
