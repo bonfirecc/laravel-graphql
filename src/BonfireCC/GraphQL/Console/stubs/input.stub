@@ -4,7 +4,6 @@ namespace DummyNamespace;
 
 use BonfireCC\GraphQL\Support\InputType;
 use App\GraphQL\Type\NameType;
-use App\GraphQL\Type\Core\Input;
 use BonfireCC\GraphQL\Support\Type as GraphQLType;
 
 class DummyClass extends GraphQLType
