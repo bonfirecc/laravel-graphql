@@ -2,6 +2,15 @@
 
 namespace BonfireCC\GraphQL\Support;
 
+use GraphQL\Type\Definition\InputObjectType;
+use GraphQL\Type\Definition\ListOfType;
+use GraphQL\Type\Definition\WrappingType;
+use Validator;
+use BonfireCC\GraphQL\Error\ValidationError;
+
+use Tymon\JWTAuth\Exceptions\JWTException;
+use Tymon\JWTAuth\Facades\JWTAuth;
+
 class Query extends Field {
 
     protected $auth;

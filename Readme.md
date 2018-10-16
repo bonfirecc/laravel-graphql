@@ -27,7 +27,7 @@ This package is compatible with Eloquent models or any other data source.
 ```json
 {
   "require": {
-    "BonfireCC/graphql-laravel": "~1.1.1"
+    "BonfireCC/graphql-laravel": "~1.0.2"
   }
 }
 ```
