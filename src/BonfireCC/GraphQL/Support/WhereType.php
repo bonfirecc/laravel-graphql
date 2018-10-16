@@ -6,6 +6,7 @@ use App\GraphQL\Scalars\DateTime;
 use App\GraphQL\Scalars\Timestamp;
 use GraphQL\Type\Definition\ObjectType;
 use GraphQL\Type\Definition\Type as GraphQLType;
+use BonfireCC\GraphQL\Support\Facades\GraphQL;
 
 class WhereType extends ObjectType
 {
