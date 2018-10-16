@@ -60,7 +60,7 @@ class TypeInputMakeCommand extends GeneratorCommand
         $stub = parent::buildClass($name);
         $typeName = strstr($name, 'Input', true);
 
-        return $this->replaceType($stub, $name, $typeName);
+        return $this->replaceType($stub, $name);
     }
 
     /**
@@ -71,7 +71,7 @@ class TypeInputMakeCommand extends GeneratorCommand
      *
      * @return $this
      */
-    protected function replaceType($stub, $name, $typeName)
+    protected function replaceType($stub, $name)
     {
         preg_match('/([^\\\]+)$/', $name, $matches);
         $stub = str_replace(
@@ -79,9 +79,9 @@ class TypeInputMakeCommand extends GeneratorCommand
             $matches[1],
             $stub
         );
-
+        $typeName = strstr($matches[1], 'Input', true);
         $stub = str_replace(
-            'InputType',
+            'NameType',
             $typeName,
             $stub
         );
