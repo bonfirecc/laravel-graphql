@@ -4,7 +4,7 @@ namespace BonfireCC\GraphQL\Console;
 
 use Illuminate\Console\GeneratorCommand;
 
-class TypeInputMakeCommand extends GeneratorCommand
+class InputMakeCommand extends GeneratorCommand
 {
 
     /**

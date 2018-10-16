@@ -1,5 +1,6 @@
 <?php namespace BonfireCC\GraphQL;
 
+use BonfireCC\GraphQL\Support\OrderByInput;
 use GraphQL\Error\Error;
 use BonfireCC\GraphQL\Error\ValidationError;
 use GraphQL\GraphQL as GraphQLBase;
@@ -27,14 +28,12 @@ class GraphQL {
 
     public function schema($schema = null)
     {
-        if($schema instanceof Schema)
-        {
+        if($schema instanceof Schema) {
             return $schema;
         }
 
         $this->typesInstances = [];
-        foreach($this->types as $name => $type)
-        {
+        foreach($this->types as $name => $type) {
             $this->type($name);
         }
 
@@ -99,8 +98,7 @@ class GraphQL {
         ];
 
         // Add errors
-        if( ! empty($executionResult->errors))
-        {
+        if( ! empty($executionResult->errors)) {
             $errorFormatter = config('graphql.error_formatter', ['\BonfireCC\GraphQL', 'formatError']);
 
             $data['errors'] = array_map($errorFormatter, $executionResult->errors);
@@ -130,8 +128,7 @@ class GraphQL {
 
     public function addType($class, $name = null)
     {
-        if(!$name)
-        {
+        if(!$name) {
             $type = is_object($class) ? $class:app($class);
             $name = $type->name;
         }
@@ -141,19 +138,16 @@ class GraphQL {
 
     public function type($name, $fresh = false)
     {
-        if(!isset($this->types[$name]))
-        {
+        if(!isset($this->types[$name])) {
             throw new \Exception('Type '.$name.' not found.');
         }
 
-        if(!$fresh && isset($this->typesInstances[$name]))
-        {
+        if(!$fresh && isset($this->typesInstances[$name])) {
             return $this->typesInstances[$name];
         }
 
         $type = $this->types[$name];
-        if(!is_object($type))
-        {
+        if(!is_object($type)) {
             $type = app($type);
         }
 
@@ -284,8 +278,7 @@ class GraphQL {
         $atributes = $type->getAttributes();
         $model = $atributes['model'] ?? false;
 
-        if(!isset($this->typesInstances[$name]))
-        {
+        if(!isset($this->typesInstances[$name])) {
             $this->typesInstances[$name] = new PaginationType($typeName, $model);
         }
 
@@ -298,21 +291,32 @@ class GraphQL {
         $types = $this->getTypes();
         $type = new $types[$typeName];
         $fields = $type->getFields();
-        if(!isset($this->typesInstances[$name]))
-        {
+        if(!isset($this->typesInstances[$name])) {
             $this->typesInstances[$name] = new WhereType($typeName, $fields);
         }
         return $this->typesInstances[$name];
     }
+
     public function input($typeName)
     {
         $name = $typeName . 'Input';
         $types = $this->getTypes();
         $type = new $types[$typeName];
         $fields = $type->getFields();
-        if(!isset($this->typesInstances[$name]))
-        {
+        if(!isset($this->typesInstances[$name])) {
             $this->typesInstances[$name] = new InputType($typeName, $fields);
+        }
+        return $this->typesInstances[$name];
+    }
+
+    public function orderBy($typeName)
+    {
+        $name = $typeName . 'OrderByEnum';
+        $types = $this->getTypes();
+        $type = new $types[$typeName];
+        $fields = $type->getFields();
+        if (!isset($this->typesInstances[$name])) {
+            $this->typesInstances[$name] = new OrderByInput($typeName, $fields);
         }
         return $this->typesInstances[$name];
     }
@@ -324,17 +328,14 @@ class GraphQL {
         ];
 
         $locations = $e->getLocations();
-        if(!empty($locations))
-        {
-            $error['locations'] = array_map(function($loc)
-            {
+        if(!empty($locations)) {
+            $error['locations'] = array_map(function($loc) {
                 return $loc->toArray();
             }, $locations);
         }
 
         $previous = $e->getPrevious();
-        if($previous && $previous instanceof ValidationError)
-        {
+        if($previous && $previous instanceof ValidationError) {
             $error['validation'] = $previous->getValidatorMessages();
         }
 
