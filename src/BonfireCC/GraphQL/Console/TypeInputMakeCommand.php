@@ -81,7 +81,7 @@ class TypeInputMakeCommand extends GeneratorCommand
         );
 
         $stub = str_replace(
-            'DummyInputType',
+            'InputType',
             $typeName,
             $stub
         );

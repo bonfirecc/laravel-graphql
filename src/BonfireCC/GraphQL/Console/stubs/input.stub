@@ -2,7 +2,7 @@
 
 namespace DummyNamespace;
 
-use App\GraphQL\Type\DummyInputType;
+use App\GraphQL\Type\InputType;
 use App\GraphQL\Type\Core\Input;
 use BonfireCC\GraphQL\Support\Type as GraphQLType;
 
@@ -16,7 +16,7 @@ class DummyClass extends GraphQLType
 
     public function fields()
     {
-        $type = new DummyInputType();
+        $type = new InputType();
 
         $fields = $type->fields();
         return Input::buildDataInput($fields, 'DummyInput');
