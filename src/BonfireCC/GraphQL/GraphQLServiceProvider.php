@@ -1,5 +1,6 @@
 <?php namespace BonfireCC\GraphQL;
 
+use BonfireCC\GraphQL\Console\TypeInputMakeCommand;
 use Illuminate\Support\ServiceProvider;
 use BonfireCC\GraphQL\Console\MutationMakeCommand;
 use BonfireCC\GraphQL\Console\QueryMakeCommand;
@@ -156,6 +157,7 @@ class GraphQLServiceProvider extends ServiceProvider
         $this->commands(TypeMakeCommand::class);
         $this->commands(QueryMakeCommand::class);
         $this->commands(MutationMakeCommand::class);
+        $this->commands(TypeInputMakeCommand::class);
     }
 
     /**
