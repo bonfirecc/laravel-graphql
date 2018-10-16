@@ -12,7 +12,7 @@ class WhereInputMakeCommand extends GeneratorCommand
      *
      * @var string
      */
-    protected $signature = 'make:graphql:input {name}';
+    protected $signature = 'make:graphql:where {name}';
     /**
      * The console command description.
      *
